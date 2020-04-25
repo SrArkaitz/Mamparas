@@ -13,10 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+Route::get('/', 'MamparaController@index')->name('index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
+Route::get('/custom', function (){
+    return view('custom');
+})->name('custom');
+
+Route::get('/añadirMampara', function (){
+    return view('añadirMampara');
+})->name('añadirMampara')->middleware('auth');
+
+Route::post('/añadirMampara/guardar', 'MamparaController@store')->name('guardarMampara');
+
+Route::get('/mampara/{id}', 'MamparaController@show')->name('detalleMampara');
+
+Route::get('/filtroLateral/{tipo}', 'MamparaController@filtro')->name('filtroLateral');

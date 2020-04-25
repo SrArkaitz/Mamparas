@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mampara;
 use Illuminate\Http\Request;
 
+
 class MamparaController extends Controller
 {
     /**
@@ -14,7 +15,12 @@ class MamparaController extends Controller
      */
     public function index()
     {
-        //
+        $mamparasDucha = Mampara::where('duchaBañera', 0)->paginate(3, ['*'], 'p1');
+        $mamparasBañera = Mampara::where('duchaBañera', 1)->paginate(3, ['*'], 'p2');
+        return view('index', [
+            'mamparasDucha' => $mamparasDucha,
+            'mamparasBañera' => $mamparasBañera
+        ]);
     }
 
     /**
@@ -35,7 +41,18 @@ class MamparaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $mamparas = new Mampara();
+
+        $mamparas->nombre = request("nombre");
+        $mamparas->tipoCristal = request("tipo");
+        $mamparas->perfil = request("perfil");
+        $mamparas->color = request("color");
+        $mamparas->duchaBañera = request("tema");
+        $mamparas->estimacionPrecio = request("precio");
+
+        $mamparas->save();
+
+        return redirect()->route('index');
     }
 
     /**
@@ -44,9 +61,11 @@ class MamparaController extends Controller
      * @param  \App\Mampara  $mampara
      * @return \Illuminate\Http\Response
      */
-    public function show(Mampara $mampara)
+    public function show($id)
     {
-        //
+        $mampara = Mampara::find($id);
+
+        return view('mamparaDetalle',['mampara' => $mampara]);
     }
 
     /**
@@ -81,5 +100,28 @@ class MamparaController extends Controller
     public function destroy(Mampara $mampara)
     {
         //
+    }
+
+    public function filtro($tipo)
+    {
+        if ($tipo == 'bañera'){
+            $mamparas = Mampara::where('duchaBañera', 1)->paginate(5);
+            return view('filtroLateral', [
+                'mamparas' => $mamparas,
+                'titulo' => 'Bañeras'
+            ]);
+        }elseif ($tipo == 'todo'){
+            $mamparas = Mampara::paginate(5);
+            return view('filtroLateral', [
+                'mamparas' => $mamparas,
+                'titulo' => 'Todas las mamparas'
+            ]);
+        }elseif ($tipo == 'ducha'){
+            $mamparas = Mampara::where('duchaBañera', 0)->paginate(5);
+            return view('filtroLateral', [
+                'mamparas' => $mamparas,
+                'titulo' => 'Duchas'
+            ]);
+        }
     }
 }

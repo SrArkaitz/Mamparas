@@ -2,10 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="273f0cdf-82d5-4a32-ba13-7b02685385d9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/añadirMampara.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/custom.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/filtroLateral.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/mamparaDetalle.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MamparaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MamparaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/Rf3FKldJ08GD30d3R8WWpSO8C6juYxsnraCiYMmX" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/YxQ2RR1zeUS8gWNRxtzCt85ObhEzqCoUfVYg1l4G" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/0aaa7158853dfc78c1842e95a4e0b5aa14eb03dc.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/0aaa7158853dfc78c1842e95a4e0b5aa14eb03dc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/7986b3363fd4fa80cdeaf38629c1962f20f631f0.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/7986b3363fd4fa80cdeaf38629c1962f20f631f0.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/framework/views/cef0d100331bded3f3f10b4b018a4b73717577b3.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/cef0d100331bded3f3f10b4b018a4b73717577b3.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,7 +29,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
       <executable />
@@ -134,6 +150,12 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\dev\laravel\Mamparas\resources\views" />
+      <recent name="C:\dev\laravel\Mamparas\public\img" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -162,7 +184,13 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1585155182993</updated>
-      <workItem from="1585155184270" duration="7374000" />
+      <workItem from="1585155184270" duration="7989000" />
+      <workItem from="1585413323293" duration="2527000" />
+      <workItem from="1586453185045" duration="9182000" />
+      <workItem from="1586623050450" duration="2102000" />
+      <workItem from="1586709139312" duration="1345000" />
+      <workItem from="1587746668048" duration="12512000" />
+      <workItem from="1587811293457" duration="943000" />
     </task>
     <servers />
   </component>
@@ -174,7 +202,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

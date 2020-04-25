@@ -7,10 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mamparas Jesus</title>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
     <!-- /Bootstrap -->
 </head>
 <body>
@@ -25,29 +32,72 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="<?php echo e(route('index')); ?>">Inicio </a>
+                <a class="nav-link" href="<?php echo e(route('index')); ?>">Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">Crear pregunta</a>
+                <a class="nav-link" href="<?php echo e(route('custom')); ?>">Customizar mampara</a>
             </li>
-            <li class="nav-item">
-            </li>
+            <?php if(Auth::check()): ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo e(route('añadirMampara')); ?>">Añadir mampara</a>
+                </li>
+            <?php endif; ?>
         </ul>
-        <form class="form-inline mr-5" action="/index" method="get">
-            <select class="form-control" name="tema_id">
-                <option value="">Temas</option>
 
+
+        <form class="form-inline mr-5" action="/index" method="get">
+            <select class="form-control mr-1" name="tema_id">
+                <option class="text-secondary" value="">Temas</option>
+                <option class="font-weight-bold" value="0">Ducha</option>
+                <option class="font-weight-bold" value="1">Bañera</option>
             </select>
-            <input class="form-control mr-sm-2" type="search"  id="titulo" name="titulo" placeholder="Buscar" aria-label="Search">
+            <input class="form-control mr-sm-2" type="search" id="titulo" name="titulo" placeholder="Buscar"
+                   aria-label="Search">
             <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button>
         </form>
-        <ul class="nav navbar-nav navbar-right">
+        <?php if(Auth::check()): ?>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="nav-link"><?php echo e(Auth::user()->name); ?></a></li>
+                <li><a class="nav-link" href="<?php echo e(route('logout')); ?>">Log Out</a></li>
+            </ul>
+        <?php else: ?>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="nav-link" href="/login">Iniciar sesión</a></li>
 
-            <li><a class="nav-link" href="">Log Out</a></li>
-        </ul>
+            </ul>
+        <?php endif; ?>
     </div>
 </nav>
-<?php echo $__env->yieldContent('content'); ?>
+<div class="container mt-4 "style="height: 500px">
+    <div class="row">
+        <div class="btn-group mb-3 col-12 d-md-none" role="group" aria-label="Button group with nested dropdown">
+            <button type="button" class="btn btn-primary"><a class="nav-item text-white" href="<?php echo e(Route('filtroLateral', 'bañera')); ?>">Bañeras</a></button>
+            <button type="button" class="btn btn-primary text-black-50"><a class="nav-item text-white" href="<?php echo e(Route('filtroLateral', 'ducha')); ?>">Duchas</a>
+            </button>
+            <button type="button" class="btn btn-primary text-black-50"><a class="nav-item text-white" href="<?php echo e(Route('filtroLateral', 'todo')); ?>">Ver todo</a>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2  mt-5 d-none d-md-block ml-3 mr-3">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a class="nav-item" href="<?php echo e(Route('filtroLateral', 'bañera')); ?>">Bañeras</a>
+                </li>
+                <li class="list-group-item">
+                    <a class="nav-item" href="<?php echo e(Route('filtroLateral', 'ducha')); ?>">Duchas</a>
+                </li>
+                <li class="list-group-item">
+                    <a class="nav-item" href="<?php echo e(Route('filtroLateral', 'todo')); ?>">Ver todo</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-12 col-md-9">
+            <?php echo $__env->yieldContent('content'); ?>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
 <?php /**PATH /home/vagrant/Code/resources/views/layouts/master.blade.php ENDPATH**/ ?>
