@@ -3,8 +3,9 @@
     <div>
         <h1 class="text-center">Duchas</h1>
         <hr>
-        @if(!isset($mamparasDucha))
-            <h2 class="text-center text-secondary">Los sentimos, no hay ninguna mampara de momento. Vuelve más tarde</h2>
+        @if(count($mamparasDucha)==0)
+            <br>
+            <h5 class="text-center text-secondary">Los sentimos, no hay ninguna mampara de momento. Vuelva más tarde</h5>
         @else
         @foreach($mamparasDucha as $ducha)
             <div class="row mb-2">
@@ -52,8 +53,9 @@
         @endif
         <h1 class="text-center mt-5">Bañera</h1>
         <hr>
-        @if(!isset($mamparasBañera))
-            <h2 class="text-center text-secondary">Los sentimos, no hay ninguna mampara de momento. Vuelve más tarde</h2>
+        @if(count($mamparasBañera)==0)
+            <br>
+            <h5 class="text-center text-secondary">Los sentimos, no hay ninguna mampara de momento. Vuelva más tarde</h5>
         @else
         @foreach($mamparasBañera as $bañera)
             <div class="row mb-2">

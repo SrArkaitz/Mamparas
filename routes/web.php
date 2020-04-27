@@ -32,3 +32,9 @@ Route::post('/añadirMampara/guardar', 'MamparaController@store')->name('guardar
 Route::get('/mampara/{id}', 'MamparaController@show')->name('detalleMampara');
 
 Route::get('/filtroLateral/{tipo}', 'MamparaController@filtro')->name('filtroLateral');
+
+Route::post('/mampara/{id}/añadirPregunta', 'PreguntaController@store')->name('añadirPregunta');
+
+Route::post('/pregunta/responder/{id}', 'RespuestaController@store')->name('responderPregunta')->middleware('auth');
+
+Route::get('/archivo/descargar/{id}', 'PreguntaController@show')->name('archivo.descargar');

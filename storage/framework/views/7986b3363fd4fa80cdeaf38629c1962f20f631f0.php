@@ -2,8 +2,9 @@
     <div>
         <h1 class="text-center">Duchas</h1>
         <hr>
-        <?php if(!isset($mamparasDucha)): ?>
-            <h2 class="text-center text-secondary">Los sentimos, no hay ninguna mampara de momento. Vuelve más tarde</h2>
+        <?php if(count($mamparasDucha)==0): ?>
+            <br>
+            <h5 class="text-center text-secondary">Los sentimos, no hay ninguna mampara de momento. Vuelva más tarde</h5>
         <?php else: ?>
         <?php $__currentLoopData = $mamparasDucha; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ducha): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="row mb-2">
@@ -52,8 +53,9 @@
         <?php endif; ?>
         <h1 class="text-center mt-5">Bañera</h1>
         <hr>
-        <?php if(!isset($mamparasBañera)): ?>
-            <h2 class="text-center text-secondary">Los sentimos, no hay ninguna mampara de momento. Vuelve más tarde</h2>
+        <?php if(count($mamparasBañera)==0): ?>
+            <br>
+            <h5 class="text-center text-secondary">Los sentimos, no hay ninguna mampara de momento. Vuelva más tarde</h5>
         <?php else: ?>
         <?php $__currentLoopData = $mamparasBañera; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $bañera): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="row mb-2">

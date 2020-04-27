@@ -33,9 +33,16 @@ class RespuestaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id)
     {
-        //
+        $respuesta = new Respuesta();
+
+        $respuesta->comentario = request('comentario');
+        $respuesta->pregunta_id = $id;
+
+        $respuesta->save();
+
+        return request('comentario');
     }
 
     /**

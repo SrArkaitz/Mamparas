@@ -33,9 +33,23 @@ class PreguntaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $pregunta = new Pregunta();
+
+        $pregunta->textoPreg = request('pregunta');
+        $pregunta->mampara_id = $id;
+
+        if ($request->hasFile('adjunto') && $request->file('adjunto')->isValid()) {
+            $adj = $request->file('adjunto');
+            $input['attachFileName'] = 'adjunto' . time() . '.' . $adj->getClientOriginalExtension();
+            $destinationPath = public_path('/adjuntos');
+            $adj->move($destinationPath, $input['attachFileName']);
+            $pregunta->adjunto = $input['attachFileName'];
+        }
+        $pregunta->save();
+
+        return redirect()->route('detalleMampara', $id);
     }
 
     /**
@@ -44,9 +58,15 @@ class PreguntaController extends Controller
      * @param  \App\Pregunta  $pregunta
      * @return \Illuminate\Http\Response
      */
-    public function show(Pregunta $pregunta)
+    public function show($id)
     {
-        //
+        $pregunta = Pregunta::find($id);
+
+
+        //Storage::download('public/adjuntos/'.$respuesta->adjunto);
+        //return redirect('anuncio.detalle', $respuesta->pregunta_id);
+        return  response()->download(public_path('adjuntos/'.$pregunta->adjunto));
+
     }
 
     /**

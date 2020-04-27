@@ -2,25 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="273f0cdf-82d5-4a32-ba13-7b02685385d9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/img/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/añadirMampara.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/custom.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/filtroLateral.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/mamparaDetalle.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/lineaVertical.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MamparaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MamparaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PreguntaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PreguntaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RespuestaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RespuestaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mampara.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mampara.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Pregunta.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Pregunta.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Respuesta.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Respuesta.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_27_184856_create_preguntas_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_27_184856_create_preguntas_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/mamparaDetalle.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mamparaDetalle.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/Rf3FKldJ08GD30d3R8WWpSO8C6juYxsnraCiYMmX" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/YxQ2RR1zeUS8gWNRxtzCt85ObhEzqCoUfVYg1l4G" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/0aaa7158853dfc78c1842e95a4e0b5aa14eb03dc.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/0aaa7158853dfc78c1842e95a4e0b5aa14eb03dc.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/framework/views/7986b3363fd4fa80cdeaf38629c1962f20f631f0.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/7986b3363fd4fa80cdeaf38629c1962f20f631f0.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/cef0d100331bded3f3f10b4b018a4b73717577b3.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/cef0d100331bded3f3f10b4b018a4b73717577b3.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -152,8 +147,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\dev\laravel\Mamparas\resources\views" />
       <recent name="C:\dev\laravel\Mamparas\public\img" />
+      <recent name="C:\dev\laravel\Mamparas\resources\views" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -190,7 +185,8 @@
       <workItem from="1586623050450" duration="2102000" />
       <workItem from="1586709139312" duration="1345000" />
       <workItem from="1587746668048" duration="12512000" />
-      <workItem from="1587811293457" duration="943000" />
+      <workItem from="1587811293457" duration="4048000" />
+      <workItem from="1587999758331" duration="13182000" />
     </task>
     <servers />
   </component>
