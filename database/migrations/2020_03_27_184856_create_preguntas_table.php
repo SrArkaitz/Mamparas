@@ -15,8 +15,8 @@ class CreatePreguntasTable extends Migration
     {
         Schema::create('preguntas', function (Blueprint $table) {
             $table->id();
-            $table->string('titPreg');
-            $table->string('cuerpoPreg');
+            $table->string('textoPreg');
+            $table->string('adjunto')->nullable();
             $table->unsignedBigInteger('mampara_id');
             $table->timestamps();
         });
