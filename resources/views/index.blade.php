@@ -1,5 +1,7 @@
 @extends('layouts.master')
 @section('content')
+
+    <!--DUCHA-->
     <div>
         <h1 class="text-center">Duchas</h1>
         <hr>
@@ -18,9 +20,13 @@
                                 <p class="col-12 col-md-6"> Perfil: {{$ducha->perfil}}</p>
                                 <p class="col-12 col-md-6 mb-sm-3 card-text">Estimación: {{$ducha->estimacionPrecio}}€ </p>
                             </div>
-                            <p class="card-text"></p>
                             <a href="{{Route('detalleMampara', $ducha->id)}}" class="card-link">Ver mampara</a>
-                            <a href="" class="card-link" data-toggle="modal" data-target="#contactar{{$ducha->id}}">Contactar</a>
+                            @if(Auth::check())
+                                <a class="card-link" href="{{Route('mampara.editar', $ducha->id)}}">Editar</a>
+                                <a class="card-link" href="{{Route('mampara.delete', $ducha->id)}}">Borrar</a>
+                            @else
+                                <a href="" class="card-link" data-toggle="modal" data-target="#contactar{{$ducha->id}}">Contactar</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -28,19 +34,33 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="contactarLabel">Contactar con compañero</h5>
+                                <h5 class="modal-title" id="contactarLabel">Contactar con Mamparas Jesús</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <textarea placeholder="Mensaje" id="mensaje" name="mensaje" style="width: 100%"></textarea>
-
+                                <label for="titulo">Nombre:*</label>
+                                <input class="form-control" type="text" id="nombrePersona{{$ducha->id}}" required>
+                                <br>
+                                <label for="titulo">Apellido:*</label>
+                                <input class="form-control" type="text" id="apellidoPersona{{$ducha->id}}" required>
+                                <br>
+                                <label for="titulo">Email:*</label>
+                                <input class="form-control" type="text" id="emailPersona{{$ducha->id}}" required>
+                                <br>
+                                <label for="titulo">Confirmación de email:*</label>
+                                <input class="form-control" type="text" id="emailPersona2{{$ducha->id}}" required>
+                                <br>
+                                <label for="titulo">Teléfono:*</label>
+                                <input class="form-control" type="text" id="telefonoPersona{{$ducha->id}}" required>
+                                <br>
+                                <label for="titulo">Mensaje:</label>
+                                <textarea id="mensaje{{$ducha->id}}" style="width: 100%" required></textarea>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary" onclick="contactarAnunciante({{$ducha->nombre}})">Enviar</button>
-
+                                <button type="button" class="btn btn-primary" onclick="contactarEmpresa({{$ducha->id}})">Enviar</button>
                             </div>
                         </div>
                     </div>
@@ -51,6 +71,7 @@
             {{$mamparasDucha->appends(['p1' => $mamparasDucha->currentPage(), 'p2' => $mamparasBañera->currentPage()])->links()}}
         </div>
         @endif
+        <!--BAÑERA-->
         <h1 class="text-center mt-5">Bañera</h1>
         <hr>
         @if(count($mamparasBañera)==0)
@@ -68,9 +89,13 @@
                                 <p class="col-12 col-md-6">Perfil: {{$bañera->perfil}}</p>
                                 <p class="col-12 col-md-6 mb-sm-3 card-text ">Estimación: {{$bañera->estimacionPrecio}}€</p>
                             </div>
-                            <p class="card-text"></p>
                             <a href="{{Route('detalleMampara', $bañera->id)}}" class="card-link">Ver mampara</a>
-                            <a href="" class="card-link" data-toggle="modal" data-target="#contactar{{$bañera->id}}">Contactar</a>
+                            @if(Auth::check())
+                                <a class="card-link" href="{{Route('mampara.editar', $bañera->id)}}">Editar</a>
+                                <a class="card-link" href="{{Route('mampara.delete', $bañera->id)}}">Borrar</a>
+                            @else
+                                <a href="" class="card-link" data-toggle="modal" data-target="#contactar{{$bañera->id}}">Contactar</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -78,19 +103,33 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="contactarLabel">Contactar con compañero</h5>
+                                <h5 class="modal-title" id="contactarLabel">Contactar con Mamparas Jesús</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <textarea placeholder="Mensaje" id="mensaje" name="mensaje" style="width: 100%"></textarea>
-
+                                <label for="titulo">Nombre:*</label>
+                                <input class="form-control" type="text" id="nombrePersona{{$bañera->id}}" required>
+                                <br>
+                                <label for="titulo">Apellido:*</label>
+                                <input class="form-control" type="text" id="apellidoPersona{{$bañera->id}}" required>
+                                <br>
+                                <label for="titulo">Email:*</label>
+                                <input class="form-control" type="text" id="emailPersona{{$bañera->id}}" required>
+                                <br>
+                                <label for="titulo">Confirmación de email:*</label>
+                                <input class="form-control" type="text" id="emailPersona2{{$bañera->id}}" required>
+                                <br>
+                                <label for="titulo">Teléfono:*</label>
+                                <input class="form-control" type="text" id="telefonoPersona{{$bañera->id}}" required>
+                                <br>
+                                <label for="titulo">Mensaje:</label>
+                                <textarea id="mensaje{{$ducha->id}}" style="width: 100%" required></textarea>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary" onclick="contactarAnunciante({{$bañera->nombre}})">Enviar</button>
-
+                                <button type="button" class="btn btn-primary" onclick="contactarEmpresa({{$bañera->id}})">Enviar</button>
                             </div>
                         </div>
                     </div>
@@ -103,3 +142,58 @@
         @endif
     </div>
 @endsection
+
+<script>
+    function contactarEmpresa(id) {
+        let nombre = $( "#nombrePersona"+id ).val();
+        let email = $('#emailPersona'+id).val();
+        let emailConfirmacion = $('#emailPersona2'+id).val();
+        let telefono = $('#telefonoPersona'+id).val();
+        let mensaje = $('#mensaje'+id).val();
+        var expRegMovil = /^(\+34|0034|34)?[6|7|8|9][0-9]{8}$/;
+        var expRegNombre = /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+
+        if(nombre != "" || email != "" || emailConfirmacion != "" || telefono != "" || mensaje != ""){
+            if(email == emailConfirmacion){
+                if(expRegNombre.exec(nombre)){
+                    if(expRegMovil.exec(telefono)){
+                        $.ajax({
+                            method: "post",
+                            url: '/mampara/contactar',
+                            data: {
+                                "_token": "{{ csrf_token() }}",
+                                "id": id,
+                                "nombre": nombre,
+                                "email": email,
+                                "telefono": telefono,
+                                "mensaje": mensaje
+                            },
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            success: function (data) {
+                                alert('yes')
+                            },
+                            error: function (data) {
+                                console.log("Error");
+                                console.log(data);
+                            }
+                        });
+                    }else{
+                        //ERROR
+                        console.log('Error')
+                    }
+                }else{
+                    //ERROR
+                    console.log('Error')
+                }
+            }else{
+                //ERROR
+                console.log('Error')
+            }
+        }else{
+            //ERROR
+            console.log('Error')
+        }
+    }
+</script>

@@ -3,12 +3,37 @@
 
     <div class="card">
         <div class="card-body">
-            <h3 class="card-title text-center">{{$mampara->nombre}}</h3>
-            <p class="card-text">Tipo de cristal: {{$mampara->tipoCristal}}</p>
-            <p class="card-text">Tipo de perfil: {{$mampara->perfil}}</p>
-            <p class="card-text">Color: {{$mampara->color}}</p>
-            <p class="card-text">Para que sitio: @if($mampara->duchaBañera == 0)Ducha @else Bañera @endif</p>
-            <p class="card-text">Estimación de precio: {{$mampara->estimacionPrecio}}</p>
+            <h3 class="card-title text-center">Información de la mampara</h3>
+            <div class="row">
+                <div class="m-1 col">
+                    <label for="titulo">Nombre:</label>
+                    <input class="form-control" type="text" id="nombre" value="{{$mampara->nombre}}" disabled>
+                </div>
+                <div class="m-1 col">
+                    <label for="titulo">Color:</label>
+                    <input class="form-control" type="text" id="color" value="{{$mampara->color}}" disabled>
+                </div>
+
+            </div>
+            <div class="m-1">
+                <label for="titulo">Tipo de cristal:</label>
+                <input class="form-control" type="text" id="tipo" value="{{$mampara->tipoCristal}} " disabled>
+            </div>
+            <div class="row">
+                <div class="m-1 col">
+                    <label for="titulo">Ducha o bañera:</label>
+                    <input class="form-control" type="text" id="precio" value="{{$mampara->duchaBañera}}" disabled>
+                </div>
+                <div class="m-1 col">
+                    <label for="titulo">Estimación de precio:</label>
+                    <input class="form-control" type="text" id="precio" value="{{$mampara->estimacionPrecio}}" disabled>
+                </div>
+            </div>
+            <div class="m-1">
+                <label for="titulo">Perfil:</label>
+                <input class="form-control" type="text" id="perfil" value="{{$mampara->perfil}}" disabled>
+            </div>
+            <br>
             <a href="#" class="btn btn-primary">Contactar</a>
         </div>
     </div>
@@ -58,17 +83,19 @@
                     <form method="post">
                         @csrf
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
-                        <textarea class="form-control" id="respuesta" name="respuesta" placeholder="Responder" cols="100" rows="3" required></textarea>
+                        <textarea class="form-control" id="respuesta{{$preg->id}}" name="respuesta{{$preg->id}}" placeholder="Responder" cols="100" rows="3" required></textarea>
                         <br>
                         <input type="button" onclick="responder({{$preg->id}})" class="btn btn-primary" value="Enviar">
                     </form>
                 @endif
             </div>
-
+            @if(Auth::check())
+                <a href="{{route('comentario.borrar', $preg->id)}}" class="btn btn-danger text-white">Borrar comentario</a>
+            @endif
             <hr>
         @endforeach
     @else
-        <p>No hay preguntas todavía</p>
+        <p class="text-secondary">No hay preguntas todavía</p>
     @endif
 
 @endsection
@@ -82,7 +109,7 @@
             data: {
                 "_token": "{{ csrf_token() }}",
                 "id": id,
-                "comentario": $( "#respuesta" ).val()
+                "comentario": $( "#respuesta"+id ).val()
             },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mamparas Jesus</title>
-
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -47,21 +47,20 @@
         </ul>
 
 
-        <form class="form-inline mr-5" action="/index" method="get">
+        <form class="navbar-nav form-inline mr-5" action="{{Route('buscar')}}" method="post">
             @csrf
-            <select class="form-control mr-1" name="tema_id">
-                <option class="text-secondary" value="">Temas</option>
-                <option class="font-weight-bold" value="0">Ducha</option>
-                <option class="font-weight-bold" value="1">Bañera</option>
+            <select class="form-control mr-1" name="temaFiltro">
+                <option class="text-secondary" value="tema">Temas</option>
+                <option class="font-weight-bold" value="ducha">Ducha</option>
+                <option class="font-weight-bold" value="bañera">Bañera</option>
             </select>
-            <input class="form-control mr-sm-2" type="search" id="titulo" name="titulo" placeholder="Buscar"
-                   aria-label="Search">
+            <input class="form-control mr-sm-2" type="search"  name="nombreFiltro" placeholder="Buscar" aria-label="Search">
             <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button>
         </form>
         @if(Auth::check())
             <ul class="nav navbar-nav navbar-right">
                 <li><a class="nav-link">{{Auth::user()->name}}</a></li>
-                <li><a class="nav-link" href="{{route('logout')}}">Log Out</a></li>
+                <li><a class="nav-link" href="{{route('logout')}}">Cerrar sesión</a></li>
             </ul>
         @else
             <ul class="nav navbar-nav navbar-right">
@@ -94,12 +93,19 @@
                     <a class="nav-item" href="{{Route('filtroLateral', 'todo')}}">Ver todo</a>
                 </li>
             </ul>
+            <div class="card mt-5">
+                <div class="card-header infoAdicionalHead font-weight-bold" style="background-color: #FFC213">
+                    Información
+                </div>
+                <div class="card-body infoAdicionalBody">
+                    <p class="card-text font-weight-bold">Debido al reciente COVID-19 se mantienen todas las normas de seguridad e higiene.</p>
+                </div>
+            </div>
         </div>
         <div class="col-12 col-md-9">
             @yield('content')
         </div>
     </div>
 </div>
-
 </body>
 </html>

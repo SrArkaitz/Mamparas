@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Mampara;
 use Illuminate\Http\Request;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 
 class MamparaController extends Controller
@@ -74,9 +77,14 @@ class MamparaController extends Controller
      * @param  \App\Mampara  $mampara
      * @return \Illuminate\Http\Response
      */
-    public function edit(Mampara $mampara)
+    public function edit($id)
     {
-        //
+        $mampara = Mampara::find($id);
+
+        return view('editarMampara', [
+            'mampara' => $mampara,
+        ]);
+
     }
 
     /**
@@ -86,9 +94,20 @@ class MamparaController extends Controller
      * @param  \App\Mampara  $mampara
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mampara $mampara)
+    public function update($id)
     {
-        //
+        $mampara = Mampara::find($id);
+
+        $mampara->nombre = request('nombre');
+        $mampara->color = request('color');
+        $mampara->estimacionPrecio = request('precio');
+        $mampara->tipoCristal = request('tipo');
+        $mampara->perfil = request('perfil');
+        $mampara->duchaBañera = request('duchaBañera');
+
+        $mampara->save();
+
+        return redirect()->route('detalleMampara', $id);
     }
 
     /**
@@ -97,9 +116,22 @@ class MamparaController extends Controller
      * @param  \App\Mampara  $mampara
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mampara $mampara)
+    public function destroy($id)
     {
-        //
+        $mampara = Mampara::find($id);
+
+        if (count($mampara->pregunta) != 0){
+            foreach ($mampara->pregunta as $preg){
+                if (isset($preg->respuesta)){
+                    $preg->respuesta->delete();
+                }
+                $preg->delete();
+            }
+        }
+
+        $mampara->delete();
+
+        return redirect()->route('index');
     }
 
     public function filtro($tipo)
@@ -123,5 +155,53 @@ class MamparaController extends Controller
                 'titulo' => 'Duchas'
             ]);
         }
+    }
+
+    public function filtradoArriba(){
+        $nombre = request('nombreFiltro');
+        $tema = request('temaFiltro');
+
+        if ($tema == "tema"){
+            $mamparas = Mampara::where('nombre', 'LIKE', '%'.$nombre.'%')->paginate(5);
+            return view('filtroArriba',['mamparas' => $mamparas]);
+        }elseif ($tema == "ducha"){
+            $mamparas = Mampara::where('nombre', 'LIKE', '%'.$nombre.'%')->where('duchaBañera', 0)->paginate(5);
+            return view('filtroArriba',['mamparas' => $mamparas]);
+        }elseif ($tema == "bañera"){
+            $mamparas = Mampara::where('nombre', 'LIKE', '%'.$nombre.'%')->where('duchaBañera', 1)->paginate(5);
+            return view('filtroArriba',['mamparas' => $mamparas]);
+        }
+
+    }
+
+    public function contactarEmpresa(){
+
+
+        $nombre = request('nombre');
+        $apellido = request('apellido');
+        $telefono = request('telefono');
+        $mensaje = request('mensaje');
+        $email = request('email');
+        $id = request('id');
+
+        $mampara = Mampara::find($id);
+
+        $mail = new PHPMailer();
+        $mail->isSmtp();
+        $mail->SMTPDebug = 0;
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'ssl';
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Port = '465';
+        $mail->isHTML(true);
+        $mail->Username = 'samplusku@gmail.com';
+        $mail->Password = '12345Abcde';
+        $mail->SetFrom('samplusku@gmail.com');
+        $mail->Subject = 'Mampara '. $mampara->nombre . " tiene un interesado";
+        $mail->Body = 'La mampara con el nombre: '.$mampara->nombre . ' tiene un interesado.<br><a href=\"homestead.test/mampara/$id\">Pincha aquí para ir a ver la mampara.</a><br>La persona en contactarte se llama $nombre $apellido. Su número de teléfono es: $telefono y el email: $email.<br>El mensaje enviado fue este:<br>'.$mensaje;
+        $mail->AddAddress('aarrkaiitz@gmail.com');
+        $mail->Send();
+        return $mampara->id;
+
     }
 }

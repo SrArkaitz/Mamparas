@@ -17,9 +17,13 @@
                                 <p class="col-12 col-md-6">Perfil: {{$mampara->perfil}}</p>
                                 <p class="col-12 col-md-6 mb-sm-3 card-text ">Estimación: {{$mampara->estimacionPrecio}}€</p>
                             </div>
-                            <p class="card-text"></p>
                             <a href="{{Route('detalleMampara', $mampara->id)}}" class="card-link">Ver mampara</a>
-                            <a href="" class="card-link" data-toggle="modal" data-target="#contactar{{$mampara->id}}">Contactar</a>
+                            @if(Auth::check())
+                                <a class="card-link" href="{{Route('mampara.editar', $mampara->id)}}">Editar</a>
+                                <a class="card-link" href="{{Route('mampara.delete', $mampara->id)}}">Borrar</a>
+                            @else
+                                <a href="" class="card-link" data-toggle="modal" data-target="#contactar{{$mampara->id}}">Contactar</a>
+                            @endif
                         </div>
                     </div>
                 </div>

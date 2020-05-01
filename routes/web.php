@@ -38,3 +38,15 @@ Route::post('/mampara/{id}/añadirPregunta', 'PreguntaController@store')->name('
 Route::post('/pregunta/responder/{id}', 'RespuestaController@store')->name('responderPregunta')->middleware('auth');
 
 Route::get('/archivo/descargar/{id}', 'PreguntaController@show')->name('archivo.descargar');
+
+Route::get('/mampara/editar/{id}', 'MamparaController@edit')->name('mampara.editar')->middleware('auth');
+
+Route::post('/mampara/update/{id}', 'MamparaController@update')->name('mampara.update')->middleware('auth');
+
+Route::get('/mampara/delete/{id}', 'MamparaController@destroy')->name('mampara.delete')->middleware('auth');
+
+Route::post('/buscar', 'MamparaController@filtradoArriba')->name('buscar');
+
+Route::get('/mampara/comentario/borrar/{id}', 'PreguntaController@destroy')->name('comentario.borrar')->middleware('auth');
+
+Route::post('/mampara/contactar', 'MamparaController@contactarEmpresa')->name('mampara.contactar');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pregunta;
+use App\Respuesta;
 use Illuminate\Http\Request;
 
 class PreguntaController extends Controller
@@ -98,8 +99,16 @@ class PreguntaController extends Controller
      * @param  \App\Pregunta  $pregunta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pregunta $pregunta)
+    public function destroy($id)
     {
-        //
+        $pregunta = Pregunta::find($id);
+
+        $mamparaId = $pregunta->mampara_id;
+
+        if (isset($pregunta->respuesta)){
+            $pregunta->respuesta->delete();
+        }
+        $pregunta->delete();
+        return redirect()->route('detalleMampara', $mamparaId);
     }
 }
