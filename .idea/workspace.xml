@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="273f0cdf-82d5-4a32-ba13-7b02685385d9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MamparaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MamparaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_27_184357_create_mamparas_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_27_184357_create_mamparas_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_03_27_185135_create_respuestas_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_03_27_185135_create_respuestas_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/añadirMampara.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/añadirMampara.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/filtroArriba.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/filtroArriba.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/filtroLateral.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/filtroLateral.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/mamparaDetalle.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mamparaDetalle.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/0aaa7158853dfc78c1842e95a4e0b5aa14eb03dc.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/0aaa7158853dfc78c1842e95a4e0b5aa14eb03dc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/7986b3363fd4fa80cdeaf38629c1962f20f631f0.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/7986b3363fd4fa80cdeaf38629c1962f20f631f0.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -191,7 +179,7 @@
       <workItem from="1588348270324" duration="13023000" />
       <workItem from="1588416278583" duration="972000" />
       <workItem from="1588783891094" duration="3154000" />
-      <workItem from="1589057429875" duration="19599000" />
+      <workItem from="1589057429875" duration="20181000" />
     </task>
     <servers />
   </component>
