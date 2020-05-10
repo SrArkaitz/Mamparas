@@ -53,6 +53,22 @@ class MamparaController extends Controller
         $mamparas->duchaBañera = request("tema");
         $mamparas->estimacionPrecio = request("precio");
 
+        if ($request->hasFile('foto1') && $request->file('foto1')->isValid()) {
+            $adj = $request->file('foto1');
+            $input['imageName'] = $mamparas->nombre . '1.' . $adj->getClientOriginalExtension();
+            $destinationPath = public_path('/fotoMamparas');
+            $adj->move($destinationPath, $input['imageName']);
+            $mamparas->foto1 = $input['imageName'];
+        }
+
+        if ($request->hasFile('foto2') && $request->file('foto2')->isValid()) {
+            $adj2 = $request->file('foto2');
+            $input['imageName2'] = $mamparas->nombre . '2.' . $adj2->getClientOriginalExtension();
+            $destinationPath2 = public_path('/fotoMamparas');
+            $adj2->move($destinationPath2, $input['imageName2']);
+            $mamparas->foto2 = $input['imageName2'];
+        }
+
         $mamparas->save();
 
         return redirect()->route('index');
@@ -178,11 +194,12 @@ class MamparaController extends Controller
 
 
         $nombre = request('nombre');
-        $apellido = request('apellido');
+        $medidas = request('medidas');
         $telefono = request('telefono');
         $mensaje = request('mensaje');
         $email = request('email');
         $id = request('id');
+        $url = 'homestead.test/mampara/'.$id;
 
         $mampara = Mampara::find($id);
 
@@ -198,7 +215,7 @@ class MamparaController extends Controller
         $mail->Password = '12345Abcde';
         $mail->SetFrom('samplusku@gmail.com');
         $mail->Subject = 'Mampara '. $mampara->nombre . " tiene un interesado";
-        $mail->Body = 'La mampara con el nombre: '.$mampara->nombre . ' tiene un interesado.<br><a href=\"homestead.test/mampara/$id\">Pincha aquí para ir a ver la mampara.</a><br>La persona en contactarte se llama $nombre $apellido. Su número de teléfono es: $telefono y el email: $email.<br>El mensaje enviado fue este:<br>'.$mensaje;
+        $mail->Body = 'La mampara con el nombre: '.$mampara->nombre . ' tiene un interesado.<br><a href="'.$url.'">Pincha aquí para ir a ver la mampara.</a><br>La persona en contactarte se llama ' . $nombre . '. Su número de teléfono es: '. $telefono .' y el email: '.$email.'.<br>Medidas para la mampara: '.$medidas.'.<br>El mensaje enviado fue este:<br>'.$mensaje;
         $mail->AddAddress('aarrkaiitz@gmail.com');
         $mail->Send();
         return $mampara->id;

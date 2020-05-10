@@ -1,5 +1,18 @@
 @extends('layouts.master')
 @section('content')
+    <div class="alert alert-success alert-dismissible  collapse" id="successAlert" role="alert">
+        El mensaje se ha enviado correctamente, te llegará un email al correo en un plazo de 2 días.
+        <button type="button" data-dismiss="alert" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="alert alert-danger alert-dismissible  collapse" id="successAlert" role="alert">
+        El mensaje no se ha podido enviar correctamente. Pruebe más tarde.
+        <button type="button" data-dismiss="alert" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 
     <div class="card">
         <div class="card-body">
@@ -34,9 +47,63 @@
                 <input class="form-control" type="text" id="perfil" value="{{$mampara->perfil}}" disabled>
             </div>
             <br>
-            <a href="#" class="btn btn-primary">Contactar</a>
+            <div class="row">
+                <div class="col-12 col-md-6 d-flex justify-content-center">
+                    <img class="card-img-top" src="{{ asset('fotoMamparas/'.$mampara->foto1) }}" style="width: 50%">
+                </div>
+                <div class="col-12 col-md-6 d-flex justify-content-center">
+                    <img class="card-img-top" src="{{ asset('fotoMamparas/'.$mampara->foto2) }}" style="width: 50%">
+                </div>
+            </div>
+            <br>
+            <div class="row d-flex justify-content-center">
+                <a href="" class="btn btn-primary contactarButton" data-toggle="modal" data-target="#contactar">Contactar</a>
+            </div>
+
         </div>
     </div>
+
+    <!--Modal-->
+
+    <div class="modal fade" id="contactar" tabindex="-1" role="dialog" aria-labelledby="contactar" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactarLabel">Contactar con Mamparas Jesús</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label for="titulo">Nombre y apellidos:*</label>
+                    <input class="form-control" type="text" id="nombrePersona{{$mampara->id}}" required>
+                    <br>
+                    <label for="titulo">Medidas:*</label>
+                    <input class="form-control" type="text" id="medidasPersona{{$mampara->id}}" required>
+                    <br>
+                    <label for="titulo">Email:*</label>
+                    <input class="form-control" type="text" id="emailPersona{{$mampara->id}}" required>
+                    <br>
+                    <label for="titulo">Confirmación de email:*</label>
+                    <input class="form-control" type="text" id="emailPersona2{{$mampara->id}}" required>
+                    <br>
+                    <label for="titulo">Teléfono:*</label>
+                    <input class="form-control" type="text" id="telefonoPersona{{$mampara->id}}" required>
+                    <br>
+                    <label for="titulo">Mensaje:</label>
+                    <textarea id="mensaje{{$mampara->id}}" style="width: 100%" required></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary contactarButton" onclick="contactarEmpresa({{$mampara->id}})">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--/Modal-->
+
+
 
     <hr>
     <form action="{{Route('añadirPregunta', $mampara->id)}}" enctype="multipart/form-data" method="post">
@@ -124,5 +191,64 @@
                 console.log(data);
             }
         });
+    }
+
+
+    function contactarEmpresa(id) {
+        let nombre = $( "#nombrePersona"+id ).val();
+        let medidas = $( "#medidasPersona"+id ).val();
+        let email = $('#emailPersona'+id).val();
+        let emailConfirmacion = $('#emailPersona2'+id).val();
+        let telefono = $('#telefonoPersona'+id).val();
+        let mensaje = $('#mensaje'+id).val();
+        var expRegMovil = /^(\+34|0034|34)?[6|7|8|9][0-9]{8}$/;
+        var expRegNombre = /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+
+        if(nombre != "" || email != "" || emailConfirmacion != "" || telefono != "" || mensaje != ""){
+            if(email == emailConfirmacion){
+                if(expRegNombre.exec(nombre)){
+                    if(expRegMovil.exec(telefono)){
+                        $.ajax({
+                            method: "post",
+                            url: '/mampara/contactar',
+                            data: {
+                                "_token": "{{ csrf_token() }}",
+                                "id": id,
+                                "nombre": nombre,
+                                "medidas": medidas,
+                                "email": email,
+                                "telefono": telefono,
+                                "mensaje": mensaje
+                            },
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            success: function (data) {
+                                $('#successAlert').show('fade');
+                                $('.contactarButton').prop('disabled', true);
+
+                                setTimeout(function() { $('#myAlert').hide('fade'); }, 10000);
+                            },
+                            error: function (data) {
+                                console.log("Error");
+                                console.log(data);
+                            }
+                        });
+                    }else{
+                        //ERROR
+                        console.log('Error')
+                    }
+                }else{
+                    //ERROR
+                    console.log('Error')
+                }
+            }else{
+                //ERROR
+                console.log('Error')
+            }
+        }else{
+            //ERROR
+            console.log('Error')
+        }
     }
 </script>

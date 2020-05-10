@@ -11,11 +11,16 @@
                 <div class="col-12">
                     <div class="card mt-3 mb-3" >
                         <div class="card-body">
-                            <h5  class="card-title font-weight-bold text-uppercase">{{$mampara->nombre}} <span class="card-text text-capitalize text-secondary small ml-3">{{$mampara->color}}</span></h5>
-                            <p class="card-text">Tipo de cristal: {{$mampara->tipoCristal}}</p>
                             <div class="row">
-                                <p class="col-12 col-md-6">Perfil: {{$mampara->perfil}}</p>
-                                <p class="col-12 col-md-6 mb-sm-3 card-text ">Estimación: {{$mampara->estimacionPrecio}}€</p>
+                                <div class="col-12 col-md-8">
+                                    <h5  class="card-title font-weight-bold text-uppercase">{{$mampara->nombre}} <span class="card-text text-capitalize text-secondary small ml-3">{{$mampara->color}}</span></h5>
+                                    <p class="card-text">Tipo de cristal: {{$mampara->tipoCristal}}</p>
+                                    <p class="card-text"> Perfil: {{$mampara->perfil}}</p>
+                                    <p class="card-text">Precio a partir de: {{$mampara->estimacionPrecio}}€ </p>
+                                </div>
+                                <div class="d-none d-md-flex col-md-4">
+                                    <img class="card-img-top" src="{{ asset('fotoMamparas/'.$mampara->foto1) }}" style="width: 50%">
+                                </div>
                             </div>
                             <a href="{{Route('detalleMampara', $mampara->id)}}" class="card-link">Ver mampara</a>
                             @if(Auth::check())

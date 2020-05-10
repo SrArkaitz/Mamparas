@@ -21,6 +21,8 @@ class CreateMamparasTable extends Migration
             $table->string('color');
             $table->boolean('duchaBañera');
             $table->double('estimacionPrecio');
+            $table->string('foto1');
+            $table->string('foto2');
             $table->timestamps();
         });
     }

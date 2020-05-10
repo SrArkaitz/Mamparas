@@ -70,7 +70,7 @@
         @endif
     </div>
 </nav>
-<div class="container mt-4 "style="height: 500px">
+<div class="container mt-4 mb-4">
     <div class="row">
         <div class="btn-group mb-3 col-12 d-md-none" role="group" aria-label="Button group with nested dropdown">
             <button type="button" class="btn btn-primary"><a class="nav-item text-white" href="{{Route('filtroLateral', 'bañera')}}">Bañeras</a></button>
@@ -107,5 +107,8 @@
         </div>
     </div>
 </div>
+<footer class="bg-dark">
+    <div class="footer-copyright text-white text-center py-3">© 2020 Copyright: Mamparas Jesus</div>
+</footer>
 </body>
 </html>

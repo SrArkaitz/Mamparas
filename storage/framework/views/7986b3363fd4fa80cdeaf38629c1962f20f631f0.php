@@ -1,7 +1,9 @@
 <?php $__env->startSection('content'); ?>
-
+    <div class="d-none d-md-flex bg-light rounded row">
+        <p class="offset-1 mt-3 text-muted font-weight-bold">Descripción de la página??</p>
+    </div>
     <!--DUCHA-->
-    <div>
+    <div class="mt-3">
         <h1 class="text-center">Duchas</h1>
         <hr>
         <?php if(count($mamparasDucha)==0): ?>
@@ -13,11 +15,16 @@
                 <div class="col-12">
                     <div class="card mt-3 mb-3" >
                         <div class="card-body">
-                            <h5  class="card-title font-weight-bold text-uppercase"><?php echo e($ducha->nombre); ?> <span class="card-text text-capitalize text-secondary small ml-3"><?php echo e($ducha->color); ?></span></h5>
-                            <p class="card-text">Tipo de cristal: <?php echo e($ducha->tipoCristal); ?></p>
                             <div class="row">
-                                <p class="col-12 col-md-6"> Perfil: <?php echo e($ducha->perfil); ?></p>
-                                <p class="col-12 col-md-6 mb-sm-3 card-text">Estimación: <?php echo e($ducha->estimacionPrecio); ?>€ </p>
+                                <div class="col-12 col-md-8">
+                                    <h5  class="card-title font-weight-bold text-uppercase"><?php echo e($ducha->nombre); ?> <span class="card-text text-capitalize text-secondary small ml-3"><?php echo e($ducha->color); ?></span></h5>
+                                    <p class="card-text">Tipo de cristal: <?php echo e($ducha->tipoCristal); ?></p>
+                                    <p class="card-text"> Perfil: <?php echo e($ducha->perfil); ?></p>
+                                    <p class="card-text">Precio a partir de: <?php echo e($ducha->estimacionPrecio); ?>€ </p>
+                                </div>
+                                <div class="d-none d-md-flex col-md-4">
+                                    <img class="card-img-top" src="<?php echo e(asset('fotoMamparas/'.$ducha->foto1)); ?>" style="width: 50%">
+                                </div>
                             </div>
                             <a href="<?php echo e(Route('detalleMampara', $ducha->id)); ?>" class="card-link">Ver mampara</a>
                             <?php if(Auth::check()): ?>
@@ -39,11 +46,11 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <label for="titulo">Nombre:*</label>
+                                <label for="titulo">Nombre y apellidos:*</label>
                                 <input class="form-control" type="text" id="nombrePersona<?php echo e($ducha->id); ?>" required>
                                 <br>
-                                <label for="titulo">Apellido:*</label>
-                                <input class="form-control" type="text" id="apellidoPersona<?php echo e($ducha->id); ?>" required>
+                                <label for="titulo">Medidas:*</label>
+                                <input class="form-control" type="text" id="medidasPersona<?php echo e($ducha->id); ?>" required>
                                 <br>
                                 <label for="titulo">Email:*</label>
                                 <input class="form-control" type="text" id="emailPersona<?php echo e($ducha->id); ?>" required>
@@ -83,11 +90,16 @@
                 <div class="col-12">
                     <div class="card mt-3 mb-3" >
                         <div class="card-body">
-                            <h5  class="card-title font-weight-bold text-uppercase"><?php echo e($bañera->nombre); ?> <span class="card-text text-capitalize text-secondary small ml-3"><?php echo e($bañera->color); ?></span></h5>
-                            <p class="card-text">Tipo de cristal: <?php echo e($bañera->tipoCristal); ?></p>
                             <div class="row">
-                                <p class="col-12 col-md-6">Perfil: <?php echo e($bañera->perfil); ?></p>
-                                <p class="col-12 col-md-6 mb-sm-3 card-text ">Estimación: <?php echo e($bañera->estimacionPrecio); ?>€</p>
+                                <div class="col-12 col-md-8">
+                                    <h5  class="card-title font-weight-bold text-uppercase"><?php echo e($bañera->nombre); ?> <span class="card-text text-capitalize text-secondary small ml-3"><?php echo e($bañera->color); ?></span></h5>
+                                    <p class="card-text">Tipo de cristal: <?php echo e($bañera->tipoCristal); ?></p>
+                                    <p class="card-text"> Perfil: <?php echo e($bañera->perfil); ?></p>
+                                    <p class="card-text">Precio a partir de: <?php echo e($bañera->estimacionPrecio); ?>€ </p>
+                                </div>
+                                <div class="d-none d-md-flex col-md-4">
+                                    <img class="card-img-top" src="<?php echo e(asset('fotoMamparas/'.$bañera->foto1)); ?>" style="width: 50%">
+                                </div>
                             </div>
                             <a href="<?php echo e(Route('detalleMampara', $bañera->id)); ?>" class="card-link">Ver mampara</a>
                             <?php if(Auth::check()): ?>
@@ -109,11 +121,11 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <label for="titulo">Nombre:*</label>
+                                <label for="titulo">Nombre y apellidos:*</label>
                                 <input class="form-control" type="text" id="nombrePersona<?php echo e($bañera->id); ?>" required>
                                 <br>
-                                <label for="titulo">Apellido:*</label>
-                                <input class="form-control" type="text" id="apellidoPersona<?php echo e($bañera->id); ?>" required>
+                                <label for="titulo">Medidas:*</label>
+                                <input class="form-control" type="text" id="medidasPersona<?php echo e($bañera->id); ?>" required>
                                 <br>
                                 <label for="titulo">Email:*</label>
                                 <input class="form-control" type="text" id="emailPersona<?php echo e($bañera->id); ?>" required>
@@ -147,6 +159,7 @@
 <script>
     function contactarEmpresa(id) {
         let nombre = $( "#nombrePersona"+id ).val();
+        let medidas = $( "#medidasPersona"+id ).val();
         let email = $('#emailPersona'+id).val();
         let emailConfirmacion = $('#emailPersona2'+id).val();
         let telefono = $('#telefonoPersona'+id).val();
@@ -165,6 +178,7 @@
                                 "_token": "<?php echo e(csrf_token()); ?>",
                                 "id": id,
                                 "nombre": nombre,
+                                "medidas": medidas,
                                 "email": email,
                                 "telefono": telefono,
                                 "mensaje": mensaje
