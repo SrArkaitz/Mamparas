@@ -2,7 +2,7 @@
 @section('content')
     <h2 class="text-center">Añadir nueva mampara</h2>
 
-    <form action="{{route('guardarMampara')}}" method="POST">
+    <form action="{{route('guardarMampara')}}" enctype="multipart/form-data" method="POST">
         @csrf
         <div class="cliente border-secondary form-group ">
             <div class="m-1">
@@ -16,7 +16,7 @@
 
             <div class="m-1">
                 <label for="perfil">Perfil:</label>
-                <input class="form-control" placeholder="Horizontal" type="text" id="perfil" name="perfil" required>
+                <input class="form-control" placeholder="Horizontal" type="text" id="perfil" name="perfil"required>
             </div>
 
             <div class="m-1">
@@ -35,8 +35,18 @@
             </div>
 
             <div class="m-1">
-                <label for="color">Estimacion de precio:</label>
+                <label for="color">Precio a partir de:</label>
                 <input class="form-control" type="number" id="precio" name="precio" placeholder="200" required>
+            </div>
+
+            <div class="m-1">
+                <label for="color">Foto nº1:</label>
+                <input type="file" class="form-control-file" name="foto1" required>
+            </div>
+
+            <div class="m-1">
+                <label for="color">Foto nº2:</label>
+                <input type="file" class="form-control-file" name="foto2" required>
             </div>
 
             <div class="m-1">

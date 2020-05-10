@@ -1,8 +1,10 @@
 @extends('layouts.master')
 @section('content')
-
+    <div class="d-none d-md-flex bg-light rounded row">
+        <p class="offset-1 mt-3 text-muted font-weight-bold">Descripción de la página??</p>
+    </div>
     <!--DUCHA-->
-    <div>
+    <div class="mt-3">
         <h1 class="text-center">Duchas</h1>
         <hr>
         @if(count($mamparasDucha)==0)
@@ -14,11 +16,16 @@
                 <div class="col-12">
                     <div class="card mt-3 mb-3" >
                         <div class="card-body">
-                            <h5  class="card-title font-weight-bold text-uppercase">{{$ducha->nombre}} <span class="card-text text-capitalize text-secondary small ml-3">{{$ducha->color}}</span></h5>
-                            <p class="card-text">Tipo de cristal: {{$ducha->tipoCristal}}</p>
                             <div class="row">
-                                <p class="col-12 col-md-6"> Perfil: {{$ducha->perfil}}</p>
-                                <p class="col-12 col-md-6 mb-sm-3 card-text">Estimación: {{$ducha->estimacionPrecio}}€ </p>
+                                <div class="col-12 col-md-8">
+                                    <h5  class="card-title font-weight-bold text-uppercase">{{$ducha->nombre}} <span class="card-text text-capitalize text-secondary small ml-3">{{$ducha->color}}</span></h5>
+                                    <p class="card-text">Tipo de cristal: {{$ducha->tipoCristal}}</p>
+                                    <p class="card-text"> Perfil: {{$ducha->perfil}}</p>
+                                    <p class="card-text">Precio a partir de: {{$ducha->estimacionPrecio}}€ </p>
+                                </div>
+                                <div class="d-none d-md-flex col-md-4">
+                                    <img class="card-img-top" src="{{ asset('fotoMamparas/'.$ducha->foto1) }}" style="width: 50%">
+                                </div>
                             </div>
                             <a href="{{Route('detalleMampara', $ducha->id)}}" class="card-link">Ver mampara</a>
                             @if(Auth::check())
@@ -40,11 +47,11 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <label for="titulo">Nombre:*</label>
+                                <label for="titulo">Nombre y apellidos:*</label>
                                 <input class="form-control" type="text" id="nombrePersona{{$ducha->id}}" required>
                                 <br>
-                                <label for="titulo">Apellido:*</label>
-                                <input class="form-control" type="text" id="apellidoPersona{{$ducha->id}}" required>
+                                <label for="titulo">Medidas:*</label>
+                                <input class="form-control" type="text" id="medidasPersona{{$ducha->id}}" required>
                                 <br>
                                 <label for="titulo">Email:*</label>
                                 <input class="form-control" type="text" id="emailPersona{{$ducha->id}}" required>
@@ -83,11 +90,16 @@
                 <div class="col-12">
                     <div class="card mt-3 mb-3" >
                         <div class="card-body">
-                            <h5  class="card-title font-weight-bold text-uppercase">{{$bañera->nombre}} <span class="card-text text-capitalize text-secondary small ml-3">{{$bañera->color}}</span></h5>
-                            <p class="card-text">Tipo de cristal: {{$bañera->tipoCristal}}</p>
                             <div class="row">
-                                <p class="col-12 col-md-6">Perfil: {{$bañera->perfil}}</p>
-                                <p class="col-12 col-md-6 mb-sm-3 card-text ">Estimación: {{$bañera->estimacionPrecio}}€</p>
+                                <div class="col-12 col-md-8">
+                                    <h5  class="card-title font-weight-bold text-uppercase">{{$bañera->nombre}} <span class="card-text text-capitalize text-secondary small ml-3">{{$bañera->color}}</span></h5>
+                                    <p class="card-text">Tipo de cristal: {{$bañera->tipoCristal}}</p>
+                                    <p class="card-text"> Perfil: {{$bañera->perfil}}</p>
+                                    <p class="card-text">Precio a partir de: {{$bañera->estimacionPrecio}}€ </p>
+                                </div>
+                                <div class="d-none d-md-flex col-md-4">
+                                    <img class="card-img-top" src="{{ asset('fotoMamparas/'.$bañera->foto1) }}" style="width: 50%">
+                                </div>
                             </div>
                             <a href="{{Route('detalleMampara', $bañera->id)}}" class="card-link">Ver mampara</a>
                             @if(Auth::check())
@@ -109,11 +121,11 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <label for="titulo">Nombre:*</label>
+                                <label for="titulo">Nombre y apellidos:*</label>
                                 <input class="form-control" type="text" id="nombrePersona{{$bañera->id}}" required>
                                 <br>
-                                <label for="titulo">Apellido:*</label>
-                                <input class="form-control" type="text" id="apellidoPersona{{$bañera->id}}" required>
+                                <label for="titulo">Medidas:*</label>
+                                <input class="form-control" type="text" id="medidasPersona{{$bañera->id}}" required>
                                 <br>
                                 <label for="titulo">Email:*</label>
                                 <input class="form-control" type="text" id="emailPersona{{$bañera->id}}" required>
@@ -146,6 +158,7 @@
 <script>
     function contactarEmpresa(id) {
         let nombre = $( "#nombrePersona"+id ).val();
+        let medidas = $( "#medidasPersona"+id ).val();
         let email = $('#emailPersona'+id).val();
         let emailConfirmacion = $('#emailPersona2'+id).val();
         let telefono = $('#telefonoPersona'+id).val();
@@ -164,6 +177,7 @@
                                 "_token": "{{ csrf_token() }}",
                                 "id": id,
                                 "nombre": nombre,
+                                "medidas": medidas,
                                 "email": email,
                                 "telefono": telefono,
                                 "mensaje": mensaje
